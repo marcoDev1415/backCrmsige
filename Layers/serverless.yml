@@ -1,0 +1,18 @@
+service: sinergia-layer-crm
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage}
+  region: us-east-1
+
+plugins:
+  - serverless-latest-layer-version
+
+layers:
+  Sinergia-crm-layer:
+    name: ${self:provider.stage}-Sinergia-crm-layer
+    path: ./
+    compatibleRuntimes:
+      - python3.9
+    retain: true
